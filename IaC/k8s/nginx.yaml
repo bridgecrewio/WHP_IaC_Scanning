@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: examplek8s
+  name: examplek8s
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: examplek8s
+  template:
+    metadata:
+      labels:
+        app: examplek8s
+    spec:
+      containers:
+      - image: nginx:1.19
+        name: nginx
+        resources: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: examplek8s
+  name: cflb
+spec:
+  ports:
+  - name: 80-80
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: examplek8s
+  type: LoadBalancer
