@@ -43,9 +43,9 @@ resource "aws_s3_bucket" "safebucket" {
 
 
 resource "aws_s3_bucket" "log_bucket" {
-	# checkov:skip=CKV_AWS_18: ADD REASON
-	# checkov:skip=CKV_AWS_144: ADD REASON
-	# checkov:skip=CKV2_AWS_6: ADD REASON
+	# checkov:skip=CKV_AWS_18: LOG BUCKET ONLY
+	# checkov:skip=CKV_AWS_144: LOG BUCKET ONLY
+	# checkov:skip=CKV2_AWS_6: LOG BUCKET ONLY
   bucket = "my-tf-log-bucket"
   acl    = "log-delivery-write"
   versioning {
@@ -129,7 +129,7 @@ resource "aws_iam_role_policy_attachment" "replication" {
 }
 
 resource "aws_s3_bucket" "destination" {
-	# checkov:skip=CKV2_AWS_6: ADD REASON
+	# checkov:skip=CKV2_AWS_6: Destination block for replication
 	# checkov:skip=CKV_AWS_144: Destination block for replication
   bucket = "tf-test-bucket-destination-12345"
   versioning {
